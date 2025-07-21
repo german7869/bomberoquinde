@@ -1,0 +1,38 @@
+.my-tablesc {
+    width: 100%; /* O el ancho que desees */
+    border-collapse: collapse; /* Para que las celdas se vean bien */
+  }
+  
+  .my-tablesc th, .my-tablesc td {
+    border: 1px solid #ddd; /* Borde de las celdas */
+    padding: 8px; /* Espaciado interno */
+    text-align: left; /* Alineación del texto */
+  }
+  
+  .my-tablesc th {
+    background-color: #f70c0c; /* Color de fondo para el encabezado */
+  }
+  
+  .my-tablesc th:nth-child(1), .my-tablesc td:nth-child(1) {
+    width:150px; /* Ancho de la primera columna */
+  }
+  
+  .my-tablesc th:nth-child(2), .my-tablesc td:nth-child(2) {
+    width: 120px; /* Ancho de la segunda columna */
+  }
+  
+  .my-tablesc th:nth-child(3), .my-tablesc td:nth-child(3) {
+    width: 380px; /* Ancho de la tercera columna */
+  }
+  
+  .my-tablesc th:nth-child(4), .my-tablesc td:nth-child(4) {
+    width: 250px; /* Ancho de la tercera columna */
+  }
+  .my-tablesc th:nth-child(5), .my-tablesc td:nth-child(5) {
+    width: 100px; /* Ancho de la tercera columna */
+  }
+  
+  
+  .centered-cell {
+    text-align: center; /* Centrar el contenido de la celda */
+  }

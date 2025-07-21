@@ -1,0 +1,178 @@
+
+/* src/components/ProductList.css */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Ocupa toda la altura de la ventana */
+  
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    
+    width: 100%; /* O el ancho que desees */
+    overflow-x: auto; /* Para permitir el desplazamien
+
+    align-items: center; /* Centra horizontalmente */
+    width: 100vw; /* Ocupa todo el ancho de la ventana */
+    height: 100vh; 
+    background-color: white;
+    width: 100%;
+    flex: 1; /* Esto permite que el contenido principal ocupe el espacio restante */
+    padding: 0px; /* Espaciado interno */
+    top: 0;
+    overflow-y: auto; /* Permite el desplazamiento si el contenido es demasiado largo */
+}
+
+.formcontainer {
+  display: flex;
+   
+  flex-direction: column;
+ 
+
+  background-color: black;
+  text-align: left;
+  flex: 1; /* Esto permite que el contenido principal ocupe el espacio restante */
+  padding: 0px; /* Espaciado interno */
+  
+  
+  
+}
+.formadd {
+  position: absolute; /* Posiciona el div en relación al contenedor */
+  top: 5px; /* Alineado a la parte superior */
+  position: relative;
+    width: 100%; /* Ancho del input */
+  margin: 10px; /* Margen opcional */
+  background-color: white;
+  
+}
+.login {
+  position: absolute; /* Posiciona el div en relación al contenedor */
+  top: 5px; /* Alineado a la parte superior */
+  right: 150px; /* Alineado a la derecha */
+  margin: 14px; /* Margen opcional */
+  background-color: white;
+  
+}
+.informativo {
+  text-align: left;
+  right: 5px; /* Alineado a la derecha */
+  
+  font-size: 12px;
+  
+}
+
+  h1 {
+    margin-bottom: 5px;
+
+  }
+  title {
+    margin-bottom: 5px;
+    color: red;
+  }
+  
+  
+  th, td {
+    border: 1px solid #ddd; /* Borde de las celdas */
+    padding: 5px; /* Espaciado interno */
+    
+  }
+  
+  th {
+    background-color: red; /* Color de fondo para los encabezados */
+    color: white;
+  }
+  
+  .search-container {
+    position: relative;
+    width: 100%; /* Ancho del input */
+  }
+  .textbuscar {
+    width: 90%;
+    padding: 10px 40px 10px 20px; /* Espacio para el ícono */
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 12px;
+  }
+  .login {
+     
+    width: 30%;
+    padding: 5px 40px 10px 50px; /* Espacio para el ícono */
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 12px;
+    text-align: left;
+  }
+  
+  button {
+    margin-left: 50px;
+    padding: 7px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color:red;
+    color: white;
+  }
+  
+  button.edit {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .precio {
+    
+    font-size: 22px;
+    text-align: right;
+  }
+  .formgroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1px;
+  }
+
+  .formbody{  
+    display: flex;
+    justify-content: flex-start; /* Alinea el contenido a la izquierda */
+    padding: 20px; 
+ }
+
+  label { 
+    padding: 0px 5px;
+    text-align: left;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  input,
+textarea {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+  .imagen {
+    font-size: 1rem;
+    font-weight: bold;
+}
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.gallery-item {
+  width: 150px; /* Ancho del recuadro */
+  height: 110px; /* Alto del recuadro */
+  overflow: hidden; /* Oculta el desbordamiento */
+  border: 1px solid #ccc; /* Borde del recuadro */
+  border-radius: 8px; /* Esquinas redondeadas */
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+
+}

@@ -1,0 +1,63 @@
+/* src/NavBar.css */
+
+/* Estilos responsivos */
+header {
+    background-color: blanchedalmond; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 1px 1px; /* Espaciado */
+    height: 12%;
+    display: flex; /* Usar flexbox */
+    justify-content: space-between; /* Espacio entre elementos */
+    align-items: center; /* Centrar verticalmente */
+  }
+ 
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0%;
+    padding: 0.5rem ;
+    background-color: white;
+    color: white;
+    padding: 0;
+    width: 100vw; /* Ocupa todo el ancho de la ventana */
+    
+    text-decoration:none;
+}
+
+.nav-links,a {
+    list-style: none;
+    display: flex;
+    text-decoration:none;
+    color: red;
+    margin-right: auto;
+}
+logo {
+    height: 7em;
+    padding: 1em;
+    will-change: filter;
+    transition: filter 300ms;
+  }
+
+li  {
+   
+    text-decoration:none;
+    border: 1px solid;
+    padding: 7px;
+    border-radius: 12px;
+    color: red;
+}
+.imagen {
+    color: black;
+    font-size: 8px;
+}
+
+
+.nav-links  li:hover {
+    color: #f0a500; /* Change color on hover */
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}

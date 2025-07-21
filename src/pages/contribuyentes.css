@@ -1,0 +1,46 @@
+.my-table {
+  width: 100%; /* O el ancho que desees */
+  border-collapse: collapse; /* Para que las celdas se vean bien */
+}
+
+.my-table th, .my-table td {
+  border: 1px solid #ddd; /* Borde de las celdas */
+  padding: 8px; /* Espaciado interno */
+  text-align: left; /* Alineación del texto */
+}
+
+.my-table th {
+  background-color: #f70c0c; /* Color de fondo para el encabezado */
+}
+
+.my-table th:nth-child(1), .my-table td:nth-child(1) {
+  width:40px; /* Ancho de la primera columna */
+}
+
+.my-table th:nth-child(2), .my-table td:nth-child(2) {
+  width: 180px; /* Ancho de la segunda columna */
+}
+
+.my-table th:nth-child(3), .my-table td:nth-child(3) {
+  width: 180px; /* Ancho de la tercera columna */
+}
+
+.my-table th:nth-child(4), .my-table td:nth-child(4) {
+  width: 140px; /* Ancho de la tercera columna */
+}
+
+.my-table th:nth-child(5), .my-table td:nth-child(5) {
+  width: 5px; /* Ancho de la tercera columna */
+}
+
+.my-table th:nth-child(6), .my-table td:nth-child(6) {
+  width: 10px; /* Ancho de la tercera columna */
+}
+
+.my-table th:nth-child(7), .my-table td:nth-child(7) {
+  width: 10px; /* Ancho de la tercera columna */
+}
+
+.centered-cell {
+  text-align: center; /* Centrar el contenido de la celda */
+}

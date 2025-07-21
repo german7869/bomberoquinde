@@ -1,0 +1,31 @@
+.my-table2 {
+  width: 90%; /* O el ancho que desees */
+  border-collapse: collapse; /* Para que las celdas se vean bien */
+}
+
+.my-table2 th, .my-table td {
+  border: 1px solid #ddd; /* Borde de las celdas */
+  padding: 8px; /* Espaciado interno */
+  text-align: left; /* Alineación del texto */
+}
+
+.my-table2 th {
+  background-color: #f70c0c; /* Color de fondo para el encabezado */
+}
+
+.my-table2 th:nth-child(1), .my-table td:nth-child(1) {
+  width: 150px; /* Ancho de la primera columna */
+}
+
+.my-table2 th:nth-child(2), .my-table td:nth-child(2) {
+  width: 200px; /* Ancho de la segunda columna */
+}
+
+.my-table2 th:nth-child(3), .my-table td:nth-child(3) {
+  width: 250px; /* Ancho de la tercera columna */
+}
+.text-amplio {
+  width: 70%; /* O el ancho que desees */
+  
+  align-self: start;
+}

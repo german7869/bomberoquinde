@@ -1,0 +1,66 @@
+.my-table3 {
+  width: 80%; /* O el ancho que desees */
+  border-collapse: collapse; /* Para que las celdas se vean bien */
+  align-self: start;
+}
+.text-amplio {
+  width: 70%; /* O el ancho que desees */
+  
+  align-self: start;
+}
+
+.my-table3 th, .my-table td {
+  border: 1px solid #ddd; /* Borde de las celdas */
+  padding: 5px; /* Espaciado interno */
+  text-align: left; /* Alineación del texto */
+}
+
+.my-table3 th {
+  background-color: #f70c0c; /* Color de fondo para el encabezado */
+}
+
+
+.my-table3 th:nth-child(1), .my-table3 td:nth-child(1) {
+  width: 10px; /* Ancho de la primera columna */
+}
+
+.my-table3 th:nth-child(2), .my-table3 td:nth-child(2) {
+  width: 100px; /* Ancho de la segunda columna */
+}
+
+.my-table3 th:nth-child(3), .my-table3 td:nth-child(3) {
+  width: 70px; /* Ancho de la tercera columna */
+}
+.my-table3 th:nth-child(4), .my-table3 td:nth-child(4) {
+  width: 60px; /* Ancho de la tercera columna */
+}
+.my-table3 th:nth-child(5), .my-table3 td:nth-child(5) {
+  width: 100px; /* Ancho de la tercera columna */
+}
+.my-table3 th:nth-child(6), .my-table3 td:nth-child(6) {
+  width: 190px; /* Ancho de la tercera columna */
+}
+.my-table3 th:nth-child(7), .my-table3 td:nth-child(7) {
+  width: 190px; /* Ancho de la tercera columna */
+}
+.my-table3 th:nth-child(8), .my-table3 td:nth-child(8) {
+  width: 20px; /* Ancho de la tercera columna */
+
+
+}
+
+
+.tabs {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.tabs button {
+  margin-right: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.tabs button:hover {
+  background-color: #f0f0f0;
+}
