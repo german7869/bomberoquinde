@@ -1,66 +1,82 @@
-.my-table3 {
-  width: 80%; /* O el ancho que desees */
-  border-collapse: collapse; /* Para que las celdas se vean bien */
-  align-self: start;
-}
-.text-amplio {
-  width: 70%; /* O el ancho que desees */
-  
-  align-self: start;
-}
+.panel-info{
 
-.my-table3 th, .my-table td {
-  border: 1px solid #ddd; /* Borde de las celdas */
-  padding: 5px; /* Espaciado interno */
-  text-align: left; /* Alineación del texto */
-}
-
-.my-table3 th {
-  background-color: #f70c0c; /* Color de fondo para el encabezado */
-}
-
-
-.my-table3 th:nth-child(1), .my-table3 td:nth-child(1) {
-  width: 10px; /* Ancho de la primera columna */
-}
-
-.my-table3 th:nth-child(2), .my-table3 td:nth-child(2) {
-  width: 100px; /* Ancho de la segunda columna */
-}
-
-.my-table3 th:nth-child(3), .my-table3 td:nth-child(3) {
-  width: 70px; /* Ancho de la tercera columna */
-}
-.my-table3 th:nth-child(4), .my-table3 td:nth-child(4) {
-  width: 60px; /* Ancho de la tercera columna */
-}
-.my-table3 th:nth-child(5), .my-table3 td:nth-child(5) {
-  width: 100px; /* Ancho de la tercera columna */
-}
-.my-table3 th:nth-child(6), .my-table3 td:nth-child(6) {
-  width: 190px; /* Ancho de la tercera columna */
-}
-.my-table3 th:nth-child(7), .my-table3 td:nth-child(7) {
-  width: 190px; /* Ancho de la tercera columna */
-}
-.my-table3 th:nth-child(8), .my-table3 td:nth-child(8) {
-  width: 20px; /* Ancho de la tercera columna */
-
+background:#f4f6f8;
+padding:20px;
+border-radius:6px;
+margin-bottom:20px;
 
 }
 
+.info-grid{
 
-.tabs {
-  display: flex;
-  margin-bottom: 10px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:10px;
+
 }
 
-.tabs button {
-  margin-right: 5px;
-  padding: 10px;
-  cursor: pointer;
+.tabla-informes{
+
+width:100%;
+border-collapse:collapse;
+
 }
 
-.tabs button:hover {
-  background-color: #f0f0f0;
+.tabla-informes th{
+
+background:#c62828;
+color:white;
+padding:8px;
+
+}
+
+.tabla-informes td{
+
+border:1px solid #ddd;
+padding:8px;
+
+}
+
+.acciones{
+
+display:flex;
+gap:6px;
+
+}
+
+.btn-img{
+
+background:#1976d2;
+color:white;
+border:none;
+padding:6px;
+cursor:pointer;
+
+}
+
+.btn-edit{
+
+background:#f9a825;
+color:white;
+border:none;
+padding:6px;
+
+}
+
+.btn-pdf{
+
+background:#2e7d32;
+color:white;
+border:none;
+padding:6px;
+
+}
+
+.btn-delete{
+
+background:#c62828;
+color:white;
+border:none;
+padding:6px;
+
 }

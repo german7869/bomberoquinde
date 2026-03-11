@@ -1,123 +1,257 @@
-// src/components/ProductList.js
-import React from 'react';
-import { useEffect, useLayoutEffect, useState } from 'react';
-import axiosInstance from '../utils/api';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import axiosInstance from "../utils/api";
+import { Link } from "react-router-dom";
+import Header from "../components/Header";
 
-import './page.css'
-import './contribuyentes.css'
-import { FaSearch , FaAddressCard , FaLock,FaCheckDouble,FaImages  } from 'react-icons/fa';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Header from '../components/Header';
+import {
+FaSearch,
+FaEdit,
+FaBuilding,
+FaFire,
+FaHardHat,
+FaHistory,
+FaUserPlus,
+FaClipboardList,
+FaFileAlt,
+FaUsers,
+FaChartBar
+} from "react-icons/fa";
 
-const ContribuyentesList = () => {
-  const navigate = useNavigate();  
-  const [data, setData] = useState([]);
-  const [datafilter, setdatafilter] = useState([]);
-  const [searchCon, setSearchCon] = useState('');
-  const itemsPerPage = 11;
-  const [currentPage, setCurrentPage] = useState(1);
-  
-  const  opcionesmenu = [
-    { id: 1, path: '/contribuyentesadd',name: 'Agregar Contribuyente' ,icono: 'FaAddressCard '},
-    { id: 2, path: '/ListInformes',name: 'Listar Informes' ,icono: ''},
-    { id: 3, path: '/ListSolicitud',name: 'Solicitudes Permisos' ,icono: ''},
-    { id: 4, path: '/ListsolicitudCon/',name: 'Solicitudes Construccion' ,icono: ''},
-    { id: 5, path: '/listinspectores',name: 'Listar inspectores' ,icono: ''},
-  ];     
-  /* home user-o plus-square list-ul  search-plus */
-  React.useEffect(() => {
-    axiosInstance.get('/contribuyentes/listadoC//')
-    .then((response) => {
-      setData(response.data);
-      
-    });
-  }, []);
+import "./contribuyentes.css";
+
+const Contribuyentes = () => {
+
+const [data,setData] = useState([]);
+const [parroquias,setParroquias] = useState([]);
+
+const [search,setSearch] = useState("");
+const [parroquia,setParroquia] = useState("");
+
+const itemsPerPage = 10;
+const [page,setPage] = useState(1);
 
 
+const opcionesmenu = [
 
-  const totalPages = Math.ceil(datafilter.length / itemsPerPage);
- 
-  const handleNext = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-      
-    }
-  };
+{ id:1, path:'/contribuyentesadd', name:'Agregar Contribuyente', icono:FaUserPlus },
 
-  const handlePrevious = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-      
-    }
-  };
+{ id:2, path:'/ListInformes', name:'Informes', icono:FaClipboardList },
+
+{ id:3, path:'/ListSolicitud', name:'Solicitudes', icono:FaFire },
+
+{ id:4, path:'/ListsolicitudCon', name:'Construcción', icono:FaHardHat },
+
+{ id:5, path:'/listinspectores', name:'Inspectores', icono:FaUsers },
+
+{ id:6, path:'/reportes-inspectores', name:'Reportes', icono:FaChartBar },
+
+{ id:7, path:'/establecimientoslist', name:'Todos Establecimientos', icono:FaBuilding }
+
+];
 
 
-  
-    const currentItems = data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
-    const filteredContribuyentes = data.filter(contribuyente =>
-      contribuyente.nombre_cont.toLowerCase().includes(searchCon.toLowerCase()) // Cambia 'nombre' por la propiedad que deseas filtrar
-    );  
-  
-  
- 
-  
-  return (
-   <div className="app"  >
-    <Header opcionesmenu={opcionesmenu} />
-    <body className='container'>
-         
-        <div className="search-container">
-          <label ><FaSearch  /> Buscar </label> 
-          < input className="search-container"
-            type="text"
-            placeholder="Buscar contribuyente..."
-            value={searchCon}
-            onChange={(e) => setSearchCon(e.target.value)}
-            /> 
-        </div>
-           
-        <table className="my-table" >
-          <thead>
-            <tr>
-              <th >Cedula/Ruc</th>
-              <th >Nombre</th>
-              <th >Direccion</th>
-              <th >Representante</th>
-              <th >Parroquia</th>
-              <th >+ agregar Solicitud</th>
-              <th >Ver Permiso(s)</th>
+useEffect(()=>{
 
-            </tr>
-          </thead>
-          <tbody>
-           {(searchCon ? filteredContribuyentes : currentItems).map(contribuyente => (
-          
-            <tr key={contribuyente.ruc_cont}>
-              <td>{contribuyente.ruc_cont }</td>
-              <td ><Link to= {`/establecimientos/${contribuyente.ruc_cont}`} >{contribuyente.nombre_cont}</Link></td>
-              <td >{contribuyente.direccion_cont}</td>
-              <td >{contribuyente.representante}</td>
-              <td >{contribuyente.parroquia_id}</td>
-              <td className="centered-cell"><Link to={`/solicitudConadd/${contribuyente.ruc_cont}`}>
-              <button >  
-                <FaCheckDouble  style={{ marginRight: '8px' }} />Solicitud</button></Link></td>
-              <td  ><Link to={`/solicitudConadd/${contribuyente.ruc_cont}`}>
-              <button > Ver Permiso </button></Link></td>
-            </tr>
-            
-          ))}
-          </tbody>   
-      </table> 
-        <div>
-          <button onClick={handlePrevious} disabled={currentPage === 1}>Anterior</button>
-          <span> Página {currentPage} de {totalPages} </span>
-          <button onClick={handleNext} disabled={currentPage === totalPages}>Siguiente</button>
-       </div>
-     </body>   
-    </div>  
-  );
-}
+axiosInstance.get("/contribuyentes/listadoC//")
+.then(res=>{
+setData(res.data);
+});
 
-export default ContribuyentesList;
+},[]);
+
+
+useEffect(()=>{
+
+axiosInstance.get("/contribuyentes/listadopar//")
+.then(res=>{
+setParroquias(res.data);
+})
+.catch(err=>{
+console.error("Error cargando parroquias",err);
+});
+
+},[]);
+
+
+const getNombreParroquia = (id)=>{
+
+const p = parroquias.find(par => par.id === parseInt(parseFloat(id)));
+
+return p ? p.nombre : "";
+
+};
+
+
+const filtered = data.filter(c =>
+
+(c.nombre_cont || "")
+.toLowerCase()
+.includes(search.toLowerCase())
+
+&&
+
+(parroquia === "" || String(c.parroquia_id) === String(parroquia))
+
+);
+
+
+const totalPages = Math.ceil(filtered.length / itemsPerPage);
+
+const current = filtered.slice(
+
+(page-1)*itemsPerPage,
+page*itemsPerPage
+
+);
+
+
+return(
+
+<div className="app">
+
+<Header opcionesmenu={opcionesmenu}/>
+
+<div className="container">
+
+<h2 className="titulo">Listado de Contribuyentes</h2>
+
+
+<div className="filtros">
+
+<div className="buscador">
+
+<FaSearch/>
+
+<input
+type="text"
+placeholder="Buscar contribuyente..."
+value={search}
+onChange={(e)=>setSearch(e.target.value)}
+/>
+
+</div>
+
+
+<select
+value={parroquia}
+onChange={(e)=>setParroquia(e.target.value)}
+>
+
+<option value="">Todas las parroquias</option>
+
+{parroquias.map(p=>(
+<option key={p.id} value={p.id}>
+{p.nombre}
+</option>
+))}
+
+</select>
+
+</div>
+
+
+<table className="tabla">
+
+<thead>
+
+<tr>
+
+<th>RUC / CI</th>
+<th>Nombre</th>
+<th>Dirección</th>
+<th>Representante</th>
+<th>Parroquia</th>
+<th>Acciones</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+{current.map(c => (
+
+<tr key={c.ruc_cont}>
+
+<td>{c.ruc_cont}</td>
+
+<td>
+
+<Link to={`/establecimientos/${c.ruc_cont}`}>
+{c.nombre_cont}
+</Link>
+
+</td>
+
+<td>{c.direccion_cont}</td>
+
+<td>{c.representante}</td>
+
+<td>{getNombreParroquia(c.parroquia_id)}</td>
+
+
+<td className="acciones">
+
+<Link to={`/contribuyentesadd/${c.ruc_cont}`}>
+<FaEdit title="Editar"/>
+</Link>
+
+<Link to={`/establecimientos/${c.ruc_cont}`}>
+<FaBuilding title="Establecimientos"/>
+</Link>
+
+<Link to={`/solicitudadd/${c.ruc_cont}`}>
+<FaFire title="Solicitud Inspección"/>
+</Link>
+
+<Link to={`/solicitudConadd/${c.ruc_cont}`}>
+<FaHardHat title="Permiso Construcción"/>
+</Link>
+
+<Link to={`/historial-permisos/${c.ruc_cont}`}>
+<FaHistory title="Historial Permisos"/>
+</Link>
+
+</td>
+
+</tr>
+
+))}
+
+</tbody>
+
+</table>
+
+
+<div className="paginacion">
+
+<button
+disabled={page===1}
+onClick={()=>setPage(page-1)}
+>
+Anterior
+</button>
+
+<span>
+Página {page} de {totalPages}
+</span>
+
+<button
+disabled={page===totalPages}
+onClick={()=>setPage(page+1)}
+>
+Siguiente
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+);
+
+};
+
+export default Contribuyentes;

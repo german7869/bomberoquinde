@@ -1,135 +1,234 @@
-// src/components/ProductList.js
-import React from 'react';
-import { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axiosInstance from '../utils/api';
-import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Header from '../components/Header';
-import GenerarPdf from './GenerarPdf'; 
-import InformeImage from './InformeImage';
+
+import { FaImages, FaEdit, FaTrash } from 'react-icons/fa';
+import { GrDocumentPdf } from "react-icons/gr";
+
 import './page.css'
 import './informe.css'
-import { FaSearch , FaAddressCard , FaLock,FaCheckDouble,FaImages  } from 'react-icons/fa';
-import { GrDocumentPdf } from "react-icons/gr";
+
 const InformesList = () => {
-  const {establecimiento_id} = useParams(); // Obtiene el parámetro de la URL
-  
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  const itemsPerPage = 9;
-  const [currentPage, setCurrentPage] = useState(1);
-  const  opcionesmenu = [
-    { id: 1, path: `/InformeAdd/${establecimiento_id}`,name: 'Agregar Informe' ,icono: ''},
-    { id: 2, path: '/Agregars',name: 'Agregar Solicitud' ,icono: ''},
-    
+const { establecimiento_id } = useParams();
 
-  ];
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        
-        const response = await axiosInstance.get(`/informes/listadoinfo/${establecimiento_id}/establecimiento/`);
-        setData(response.data);
-        
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+const [data,setData] = useState([]);
+const [infoEstablecimiento,setInfoEstablecimiento] = useState({});
 
-    fetchData();
-  }, []);
+const [loading,setLoading] = useState(true);
+const [error,setError] = useState(null);
 
-   
-  
-  const totalPages = Math.ceil(data.length / itemsPerPage);
- 
-  const handleNext = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-      
-    }
-  };
+const opcionesmenu = [
 
-  const handlePrevious = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-      
-    }
-  };
+{ id:1, path:`/InformeAdd/${establecimiento_id}`, name:'Agregar Informe' },
+{ id:2, path:`/solicitudadd/${establecimiento_id}`, name:'Agregar Solicitud' }
 
-  const handleGeneratePdf = () => {
-    // Call the function to generate the PDF
-    // Assuming PdfGenerator has a method to generate PDF
-    <GenerarPdf />
-  };
-  
-  const items = Array.isArray(data) ? data : [];
-  //const currentItems = data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
-  if (loading) return <p>Cargando...</p>;
-  if (error) return <p>Error: {error}</p>;
+];
 
-  return (
-    <div className="app"> 
-     <Header opcionesmenu={opcionesmenu}  / >
-     <body className='container'>
-     <div className="informativo">  
-          <p>contribuyente : {establecimiento_id}  Nombre: 
-          Direccion: 
-          representante: </p>
-      </div>    
-          <div className="search-container">
-          <input type="text" className="textbuscar" placeholder="Buscar Informes"/>
-         </div>
-           
-        <table className="my-table3">
-          <thead>
-            <tr>
-              <th >id</th>
-              <th >imagenes</th>
-              <th >Fecha</th>
-              <th >Solicitud</th>
-              <th >Inspector</th>
-               <th >Observacion</th>
-               <th >Resultado</th>
-               <th >PDF</th>
-               
-            </tr>
-          </thead>
-         
-         {items.map((establecimiento) => (
-            <tr key={establecimiento.id}>
-              <td >{establecimiento.id}</td>
-              <td ><Link to={`/InformeImage/${establecimiento.id}`}>
-              <button > 
-              <FaImages style={{ marginRight: '8px' }} /></button></Link></td>
-              <td >{establecimiento.Fecha_informe}</td>
-              <td >{establecimiento.nro_socilitud}</td>
-              <td >{establecimiento.inspector}</td>
-              <td ><Link to={`/InformesAdd/${establecimiento_id}`}>{establecimiento.observacion}</Link></td>
-              <td >{establecimiento.resultado_informe}</td>
-              <td ><Link to={`/informespdf/${establecimiento.id}`}>
-              <button > 
-              <GrDocumentPdf style={{ marginRight: '8px' }} /></button></Link></td>
-             
-              
-              
-            </tr>    
-             ) )
-            }
-          </table>
-        <div>
-          <button onClick={handlePrevious} disabled={currentPage === 1}>Anterior</button>
-          <span> Página {currentPage} de {totalPages} </span>
-           <button onClick={handleNext} disabled={currentPage === totalPages}>Siguiente</button>
-         </div>
-    
-    </body>   
-    </div>
-  );
+useEffect(()=>{
+
+cargarDatos();
+
+},[]);
+
+useEffect(()=>{
+
+axiosInstance.get(`/contribuyentes/listadoec//${establecimiento_id}/`)
+.then(res=>{
+setInfoEstablecimiento(res.data);
+});
+
+},[]);
+
+const cargarDatos = async()=>{
+
+try{
+
+const res = await axiosInstance.get(`/informes/listadoinfo/${establecimiento_id}/establecimiento/`);
+
+setData(res.data);
+
+
+}catch(err){
+
+setError(err.message);
+
+}finally{
+
+setLoading(false);
+
+}
+
+};
+
+
+const eliminarInforme = async(id, tieneImagen, nroInforme)=>{
+
+if(tieneImagen){
+
+alert("No se puede eliminar, tiene imágenes cargadas");
+return;
+
+}
+
+if(nroInforme){
+
+alert("No se puede eliminar, el informe ya tiene número emitido");
+return;
+
+}
+
+if(!window.confirm("¿Eliminar informe?")) return;
+
+try{
+
+await axiosInstance.delete(`/informes/eliminar/${id}/`);
+
+setData(data.filter(i=>i.id !== id));
+
+}catch(err){
+
+alert("Error eliminando informe");
+
+}
+
+};
+
+
+if(loading) return <p>Cargando...</p>;
+if(error) return <p>Error: {error}</p>;
+
+return (
+
+<div className="app">
+
+<Header opcionesmenu={opcionesmenu}/>
+
+<div className='container'>
+
+{/* INFORMACION SUPERIOR */}
+
+<div className="panel-info">
+
+<h3>Información del Establecimiento</h3>
+
+<div className="info-grid">
+
+
+<div>
+<strong>Establecimiento:</strong> {infoEstablecimiento.nombre_est}
+</div>
+
+<div>
+<strong>Dirección:</strong> {infoEstablecimiento.direccion_est}
+</div>
+
+<div>
+<strong>Actividad:</strong> {infoEstablecimiento.actividad}
+</div>
+
+</div>
+
+</div>
+
+
+{/* TABLA */}
+
+<table className="tabla-informes">
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+<th>Fecha</th>
+<th>Solicitud</th>
+<th>Inspector</th>
+<th>Observación</th>
+<th>Resultado</th>
+<th>Acciones</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{data.map((inf)=>(
+
+<tr key={inf.id}>
+
+<td>{inf.id}</td>
+
+<td>{inf.Fecha_informe}</td>
+
+<td>{inf.nro_socilitud}</td>
+
+<td>{inf.inspector}</td>
+
+<td>{inf.observacion}</td>
+
+<td>{inf.resultado_informe}</td>
+
+<td className="acciones">
+
+<Link to={`/InformeImage/${establecimiento_id}`}>
+
+<button className="btn-img" title="Ver imágenes del informe" >
+<FaImages/>
+</button>
+
+</Link>
+
+<Link to={`/InformesAdd/${inf.id}`}>
+
+<button className="btn-edit" title="Editar  informe">
+<FaEdit/>
+</button>
+
+</Link>
+
+<Link to={`/informespdf/${inf.id}`}>
+
+<button className="btn-pdf" title="PDF">
+<GrDocumentPdf/>
+</button>
+
+</Link>
+
+<button
+
+className="btn-delete"
+
+onClick={()=>eliminarInforme(
+inf.id,
+inf.tiene_imagen,
+inf.nro_informe
+)}
+
+>
+
+<FaTrash/>
+
+</button>
+
+</td>
+
+</tr>
+
+))}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+);
+
 }
 
 export default InformesList;

@@ -1,31 +1,110 @@
-.my-table2 {
-  width: 90%; /* O el ancho que desees */
-  border-collapse: collapse; /* Para que las celdas se vean bien */
+.card-contribuyente{
+
+background:#f7f7f7;
+padding:15px;
+border-radius:8px;
+margin-bottom:20px;
+
 }
 
-.my-table2 th, .my-table td {
-  border: 1px solid #ddd; /* Borde de las celdas */
-  padding: 8px; /* Espaciado interno */
-  text-align: left; /* Alineación del texto */
+.grid-info{
+
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+
 }
 
-.my-table2 th {
-  background-color: #f70c0c; /* Color de fondo para el encabezado */
+.search-container{
+
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:15px;
+
 }
 
-.my-table2 th:nth-child(1), .my-table td:nth-child(1) {
-  width: 150px; /* Ancho de la primera columna */
+.search-container input{
+
+padding:8px;
+width:300px;
+
 }
 
-.my-table2 th:nth-child(2), .my-table td:nth-child(2) {
-  width: 200px; /* Ancho de la segunda columna */
+.tabla-establecimientos{
+
+width:100%;
+border-collapse:collapse;
+
 }
 
-.my-table2 th:nth-child(3), .my-table td:nth-child(3) {
-  width: 250px; /* Ancho de la tercera columna */
+.tabla-establecimientos th{
+
+background:#222;
+color:white;
+padding:10px;
+
 }
-.text-amplio {
-  width: 70%; /* O el ancho que desees */
-  
-  align-self: start;
+
+.tabla-establecimientos td{
+
+padding:10px;
+border-bottom:1px solid #ddd;
+
+}
+
+.tabla-establecimientos tr:hover{
+
+background:#f5f5f5;
+
+}
+
+.acciones{
+
+display:flex;
+gap:10px;
+font-size:20px;
+
+}
+
+.estado{
+
+padding:4px 10px;
+border-radius:6px;
+font-size:12px;
+font-weight:bold;
+
+}
+
+.estado.activo{
+
+background:#d4edda;
+color:#155724;
+
+}
+
+.estado.inactivo{
+
+background:#f8d7da;
+color:#721c24;
+
+}
+
+.btn-solicitud{
+
+background:#0066cc;
+color:white;
+border:none;
+padding:5px 10px;
+border-radius:5px;
+
+}
+
+.paginacion{
+
+margin-top:20px;
+display:flex;
+justify-content:center;
+gap:20px;
+
 }

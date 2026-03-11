@@ -1,105 +1,211 @@
+import React, { useEffect, useState } from "react";
+import axiosInstance from "../utils/api";
+import { Link } from "react-router-dom";
+import Header from "../components/Header";
 
-// src/components/ProductList.js
-import React from 'react';
-import { useEffect, useLayoutEffect, useState } from 'react';
-import axiosInstance from '../utils/api';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import './page.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Header from '../components/Header';
-import { GrDocumentPdf } from "react-icons/gr";
+import {
+GrDocumentPdf
+} from "react-icons/gr";
+
+import {
+FaSearch,
+FaEye
+} from "react-icons/fa";
+
+import "./page.css";
+import "./Listadoinforme.css";
 
 const ListInforme = () => {
-  const navigate = useNavigate();  
-  const [data, setData] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
 
-  const itemsPerPage = 11;
-  const [currentPage, setCurrentPage] = useState(1);
-  
-  const  opcionesmenu = [
-    { id: 1, path: '/Agregarc',name: 'Agregar Contribuyente' ,icono: ''},
-    { id: 2, path: '/ListInformes',name: 'Listar Informes' ,icono: ''},
-    { id: 3, path: '/ListSolicitud',name: 'Listar Solicitudes' ,icono: ''},
-    { id: 4, path: '/listInpectores',name: 'Listar inspectores' ,icono: ''},
-  ];     
-  /* home user-o plus-square list-ul  search-plus */
-  React.useEffect(() => {
-    axiosInstance.get('/informes/listadoinfo//')
-    .then((response) => {
-      setData(response.data);
-      
-    });
-  }, []);
+const [data,setData] = useState([]);
+const [search,setSearch] = useState("");
+const [resultadoFilter,setResultadoFilter] = useState("");
 
-  const totalPages = Math.ceil(data.length / itemsPerPage);
- 
-  const handleNext = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-      
-    }
-  };
+const itemsPerPage = 10;
+const [page,setPage] = useState(1);
 
-  const handlePrevious = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-      
-    }
-  };
+const opcionesmenu = [
 
-  const currentItems = data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
- 
-  
-  return (
-   <div   >
-    <Header opcionesmenu={opcionesmenu} />
-    <body className='container'>
-         
-        <div className="search-container">
-          <input type="text" className="textbuscar" placeholder="Buscar Contribuyentes"/>  
-        </div>
-           
-        <table >
-          <thead>
-            <tr>
-              <th >Nro</th>
-              <th >Fecha</th>
-              <th >Establecimieto</th>
-              <th >Inspector</th>
-              <th >Resultado</th>
-              <th >Solicitud</th>
-              <th >Observacion</th>
-              <th >PDF</th>
-            
-            </tr>
-          </thead>
-        
-          {currentItems.map((inf) => (
-            <tr key={inf.id}>
-              <td >{inf.id }</td>
-              <td >{inf.Fecha_informe}</td>
-              <td >{inf.establecimiento}</td>
-              <td >{inf.inspector}</td>
-              <td >{inf.socilictud}</td>
-              <td >{inf.observacion}</td>
-              <td ><Link to={`/informespdf/${inf.establecimiento}/${inf.id}`}>
-                                             <button > 
-                                               <GrDocumentPdf style={{ marginRight: '8px' }} />
-                                               </button></Link>
-                                              </td>
-            </tr>    
-          ))}
-      </table> 
-        <div>
-          <button onClick={handlePrevious} disabled={currentPage === 1}>Anterior</button>
-          <span> Página {currentPage} de {totalPages} </span>
-          <button onClick={handleNext} disabled={currentPage === totalPages}>Siguiente</button>
-       </div>
-     </body>   
-    </div>  
-  );
-}
+{ id:1,path:'/contribuyentesadd',name:'Agregar Contribuyente'},
+{ id:2,path:'/ListInformes',name:'Informes Inspección'},
+{ id:3,path:'/ListSolicitud',name:'Solicitudes Permisos'},
+{ id:4,path:'/listinspectores',name:'Inspectores'}
+
+];
+
+useEffect(()=>{
+
+axiosInstance.get("/informes/listadoinfo//")
+.then(res=>{
+setData(res.data);
+});
+
+},[]);
+
+
+const filtered = data.filter(i =>
+
+(i.establecimiento_nombre || "")
+.toLowerCase()
+.includes(search.toLowerCase()) &&
+
+(resultadoFilter === "" || i.resultado_informe === resultadoFilter)
+
+);
+
+
+const totalPages = Math.ceil(filtered.length / itemsPerPage);
+
+const current = filtered.slice(
+
+(page-1)*itemsPerPage,
+page*itemsPerPage
+
+);
+
+
+return(
+
+<div className="app">
+
+<Header opcionesmenu={opcionesmenu}/>
+
+<div className="container">
+
+<h2>Listado de Informes de Inspección</h2>
+
+
+{/* FILTROS */}
+
+<div className="filtros">
+
+<div className="buscador">
+
+<FaSearch/>
+
+<input
+type="text"
+placeholder="Buscar establecimiento..."
+value={search}
+onChange={(e)=>setSearch(e.target.value)}
+/>
+
+</div>
+
+
+<select
+value={resultadoFilter}
+onChange={(e)=>setResultadoFilter(e.target.value)}
+>
+
+<option value="">Todos los resultados</option>
+<option value="APROBADO">Aprobado</option>
+<option value="NEGADO">Negado</option>
+<option value="CONDICIONADO">Condicionado</option>
+
+</select>
+
+</div>
+
+
+<table className="tabla">
+
+<thead>
+
+<tr>
+
+<th>#</th>
+<th>Fecha</th>
+<th>Establecimiento</th>
+<th>Inspector</th>
+<th>Resultado</th>
+<th>Solicitud</th>
+<th>Observación</th>
+<th>Acciones</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+{current.map(inf => (
+
+<tr key={inf.id}>
+
+<td>{inf.id}</td>
+
+<td>{inf.fecha_informe}</td>
+
+<td>{inf.establecimiento_nombre}</td>
+
+<td>{inf.inspector_nombre}</td>
+
+<td>
+
+<span className={`estado ${inf.resultado_informe?.toLowerCase()}`}>
+{inf.resultado_informe}
+</span>
+
+</td>
+
+<td>{inf.nrosolicitud}</td>
+
+<td>{inf.observacion}</td>
+
+
+<td className="acciones">
+  {/* `/informes/listadoinfo/${establecimiento_id}/establecimiento/` */}
+
+<Link to={`/informespdf/${inf.establecimiento}/${inf.id}`}>
+<GrDocumentPdf title="Generar PDF"/>
+</Link>
+
+<Link to={`/verinforme/${inf.id}`}>
+<FaEye title="Ver Informe"/>
+</Link>
+
+</td>
+
+</tr>
+
+))}
+
+</tbody>
+
+</table>
+
+
+<div className="paginacion">
+
+<button
+disabled={page===1}
+onClick={()=>setPage(page-1)}
+>
+Anterior
+</button>
+
+<span>
+Página {page} de {totalPages}
+</span>
+
+<button
+disabled={page===totalPages}
+onClick={()=>setPage(page+1)}
+>
+Siguiente
+</button>
+
+</div>
+
+
+</div>
+
+</div>
+
+);
+
+};
 
 export default ListInforme;

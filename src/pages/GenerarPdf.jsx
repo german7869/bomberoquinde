@@ -5,15 +5,16 @@ import axiosInstance from '../utils/api';
 import { useParams } from 'react-router-dom';
 
 const PdfGenerator = () => {
-    const { informe_id } = useParams();
+    const { establecimiento_id,informe_id } = useParams();
     const [informes, setInformes] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    {/* `/informes/listadoinfo/${establecimiento_id}/establecimiento/` */}    
     useEffect(() => {
         const fetchInformes = async () => {
             try {
-                const response = await axiosInstance.get(`/informes/listadoinfo//${informe_id}/`);
+                const response = await axiosInstance.get(`/informes/listadoinfo/${establecimiento_id}/establecimiento/${informe_id}/`);
                 setInformes(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
