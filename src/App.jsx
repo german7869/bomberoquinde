@@ -21,7 +21,7 @@ import Generarpdf from './pages/GenerarPdf'
 import InformesAdd from "./pages/InformesAdd";
 
 import Solicitudadd from "./pages/Solicitudadd";
-import Solicitudpdf from "./pages/solicitudpdf";
+
 
 import ListInforme from "./pages/ListInforme";
 import ListSolicitud from "./pages/ListSolicitud";
@@ -92,10 +92,7 @@ path="/solicitudadd/:establecimiento_id"
 element={<Solicitudadd />}
 />
 
-<Route
-path="/solicitudpdf/:establecimiento_id/:solicitud_id"
-element={<Solicitudpdf />}
-/>
+
 
 <Route path="/Listinformes" element={<ListInforme />} />
 
