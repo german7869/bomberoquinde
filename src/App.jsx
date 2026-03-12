@@ -44,6 +44,7 @@ return (
 <Route path="/about" element={<About />} />
 
 <Route path="/contact" element={<Contact />} />
+
 <Route path="/InformeImage/:informe_id" element={<InformeImage />} />
 
 
@@ -100,7 +101,10 @@ element={<Solicitudadd />}
 
 <Route path="/Listinspectores" element={<ListInspector />} />
 
+<Route path="/Permisos" element={<Permisos />} />
+
 <Route path="/iniciar" element={<User />} />
+
 <Route path="/dashboard" element={<Dashboard />} />
 
 </Routes>
