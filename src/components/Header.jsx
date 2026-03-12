@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./header.css";
+import "./Header.css";
 
 import image1 from "../assets/logoq.jpeg";
 
