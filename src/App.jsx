@@ -28,7 +28,7 @@ import ListSolicitud from "./pages/ListSolicitud";
 import ListInspector from "./pages/ListInspector";
 import Dashboard from "./pages/Dashboard";
 import User from "./pages/User";
-import InformeImage from './pages/InformeImage'
+import InformePImage from './pages/InformePImage'
 import "./app.css";
 
 const App = () => {
@@ -45,7 +45,7 @@ return (
 
 <Route path="/contact" element={<Contact />} />
 
-<Route path="/InformeImage/:informe_id" element={<InformeImage />} />
+<Route path="/InformeImage/:informe_id" element={<InformePImage />} />
 
 
 <Route path="/contribuyentes" element={<Contribuyentes />} />
