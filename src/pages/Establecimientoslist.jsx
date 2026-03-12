@@ -7,7 +7,7 @@ import { MdDeleteForever, MdEdit } from "react-icons/md";
 import { FaPlus, FaFileAlt, FaSearch } from "react-icons/fa";
 
 import "./page.css";
-import "./establecimientos.css";
+import "./establecimiento.css";
 
 const  Establecimientoslst = () => {
 
