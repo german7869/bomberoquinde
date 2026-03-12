@@ -29,7 +29,7 @@ import ListInspector from "./pages/ListInspector";
 import Dashboard from "./pages/Dashboard";
 import User from "./pages/User";
 import InformePImage from './pages/InformePImage'
-import "./app.css";
+import "./appb.css";
 
 const App = () => {
 
