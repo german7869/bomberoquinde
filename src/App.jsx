@@ -17,6 +17,7 @@ import Establecimientoslist from "./pages/Establecimientoslist";
 import EstablecimientoAdd from "./pages/EstablecimientoAdd";
 
 import Informes from "./pages/Informes";
+import Permisos from "./pages/Permisos";
 import Generarpdf from './pages/GenerarPdf'
 import InformesAdd from "./pages/InformesAdd";
 
