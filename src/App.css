@@ -2,12 +2,12 @@
     padding-top: 5%;
     top: 0;
     position: relative;
-    padding: 10px 50px;
+    padding: 11px 50px;
    }
 
 .logo {
   height: 3em;
-  padding: 2em;
+  padding: 2.5em;
   will-change: filter;
   transition: filter 300ms;
 }
