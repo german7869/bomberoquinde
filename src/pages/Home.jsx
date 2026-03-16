@@ -60,7 +60,7 @@ className="slider-img"
 
 <h1>BOMBEROS DE ....</h1>
 
-<p>Siempre listos para servir a la comunidad</p>
+<p>Siempre listos para servir a la comunidad...</p>
 
 </div>
 
