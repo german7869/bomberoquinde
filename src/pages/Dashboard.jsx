@@ -96,15 +96,16 @@ onChange={(e)=>setAnio(e.target.value)}
 
 <h4>Servicios</h4>
 
-<p>{totales.servicios}</p>
-
+{/* <p>{totales.servicios}</p> */}
+ 
 </div>
 
 <div className="card">
 
 <h4>Inspecciones</h4>
 
-<p>{totales.inspecciones}</p>
+{/* <p>{totales.inspecciones}</p> */}
+
 
 </div>
 
@@ -112,7 +113,8 @@ onChange={(e)=>setAnio(e.target.value)}
 
 <h4>Informes permisos</h4>
 
-<p>{totales.permisos}</p>
+{/* <p>{totales.permisos}</p> */}
+
 
 </div>
 
@@ -120,7 +122,8 @@ onChange={(e)=>setAnio(e.target.value)}
 
 <h4>Informes construcción</h4>
 
-<p>{totales.construccion}</p>
+{/* <p>{totales.construccion}</p> */}
+
 
 </div>
 
@@ -128,7 +131,8 @@ onChange={(e)=>setAnio(e.target.value)}
 
 <h4>Establecimientos con informe</h4>
 
-<p>{totales.establecimientos}</p>
+{/* <p>{totales.establecimientos}</p> */}
+
 
 </div>
 
@@ -136,7 +140,8 @@ onChange={(e)=>setAnio(e.target.value)}
 
 <h4>Contribuyentes</h4>
 
-<p>{totales.contribuyentes}</p>
+{/* <p>{totales.contribuyentes}</p> */}
+
 
 </div>
 
@@ -186,17 +191,7 @@ onChange={(e)=>setAnio(e.target.value)}
 
 <tbody>
 
-{ultimasInspecciones.map((i,index)=>(
 
-<tr key={index}>
-
-<td>{i.fecha}</td>
-<td>{i.establecimiento}</td>
-<td>{i.inspector}</td>
-
-</tr>
-
-))}
 
 </tbody>
 
@@ -223,17 +218,7 @@ onChange={(e)=>setAnio(e.target.value)}
 
 <tbody>
 
-{ultimosInformes.map((i,index)=>(
 
-<tr key={index}>
-
-<td>{i.fecha}</td>
-<td>{i.establecimiento}</td>
-<td>{i.tipo}</td>
-
-</tr>
-
-))}
 
 </tbody>
 
