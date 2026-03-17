@@ -24,7 +24,7 @@ setLoading(true);
 
 try{
 
-await axiosInstance.get(`/login/login/${username}/`);
+await axiosInstance.get(`/user/login/${username}/`);
 
 navigate("/dashboard");
 
