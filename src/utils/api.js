@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'dizziest-kaia-unsantirically.ngrok-free.dev',  // Asegúrate de que esta URL sea correcta
+  baseURL: 'https://dizziest-kaia-unsantirically.ngrok-free.dev',  // Asegúrate de que esta URL sea correcta
                  
 });
 
