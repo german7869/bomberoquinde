@@ -1,0 +1,184 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap");
+
+.solcons-page{
+padding:24px;
+background:linear-gradient(180deg,#f5f8fb 0%,#ffffff 45%);
+font-family:"Manrope","Segoe UI","Helvetica Neue",sans-serif;
+}
+
+.solcons-hero{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+gap:20px;
+padding:22px;
+border-radius:20px;
+background:linear-gradient(135deg,#0f2740 0%,#1f4e79 100%);
+color:#ffffff;
+box-shadow:0 22px 44px rgba(15,39,64,0.22);
+margin-bottom:16px;
+}
+
+.solcons-kicker{
+margin:0;
+font-size:0.8rem;
+letter-spacing:0.14em;
+text-transform:uppercase;
+opacity:0.8;
+}
+
+.solcons-hero h2{
+margin:6px 0 8px;
+font-size:1.75rem;
+line-height:1.1;
+}
+
+.solcons-subtitle{
+margin:0;
+max-width:660px;
+font-size:0.95rem;
+line-height:1.45;
+color:rgba(255,255,255,0.84);
+}
+
+.solcons-meta-grid{
+display:grid;
+grid-template-columns:repeat(3,minmax(150px,1fr));
+gap:10px;
+margin-top:14px;
+}
+
+.solcons-meta-grid strong{
+font-size:0.68rem;
+text-transform:uppercase;
+letter-spacing:0.05em;
+color:rgba(255,255,255,0.82);
+}
+
+.solcons-meta-grid p{
+margin:4px 0 0;
+font-size:0.9rem;
+color:#ffffff;
+}
+
+.solcons-hero-actions{
+display:grid;
+gap:8px;
+width:min(100%,230px);
+}
+
+.solcons-primary-button,
+.solcons-secondary-button{
+height:42px;
+padding:0 14px;
+border:none;
+border-radius:11px;
+font-weight:700;
+cursor:pointer;
+}
+
+.solcons-primary-button{
+background:#c1121f;
+color:#ffffff;
+}
+
+.solcons-primary-button:disabled{
+opacity:0.6;
+cursor:not-allowed;
+}
+
+.solcons-secondary-button{
+background:#ffffff;
+color:#0f2740;
+}
+
+.solcons-form-shell{
+padding:18px;
+background:#ffffff;
+border:1px solid #dce6ee;
+border-radius:18px;
+box-shadow:0 14px 34px rgba(15,23,42,0.05);
+}
+
+.solcons-form-grid{
+display:grid;
+grid-template-columns:repeat(2,minmax(220px,1fr));
+gap:14px;
+}
+
+.solcons-field{
+display:flex;
+flex-direction:column;
+gap:8px;
+font-size:0.9rem;
+color:#29445b;
+}
+
+.solcons-field span{
+font-weight:700;
+}
+
+.solcons-field input,
+.solcons-field select{
+height:42px;
+border:1px solid #c7d5e2;
+border-radius:12px;
+padding:0 12px;
+background:#fbfdff;
+}
+
+.solcons-field-full{
+grid-column:span 2;
+}
+
+.solcons-actions-row{
+margin-top:14px;
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+align-items:center;
+}
+
+.solcons-info-banner{
+margin:0;
+padding:12px 14px;
+border-radius:12px;
+background:#edf5fb;
+border:1px solid #cfe0ef;
+color:#29445b;
+font-weight:600;
+flex:1;
+min-width:260px;
+}
+
+.solcons-info-error{
+background:#fee2e2;
+border-color:#f5b8b8;
+color:#991b1b;
+}
+
+@media (max-width: 900px){
+.solcons-page{
+padding:16px;
+}
+
+.solcons-hero{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.solcons-meta-grid,
+.solcons-form-grid{
+grid-template-columns:1fr;
+}
+
+.solcons-field-full{
+grid-column:span 1;
+}
+
+.solcons-hero-actions,
+.solcons-primary-button,
+.solcons-secondary-button{
+width:100%;
+}
+}

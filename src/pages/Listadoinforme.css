@@ -10,24 +10,79 @@ align-items:center;
 gap:8px;
 }
 
-.tabla{
+.inf-grid-list{
+display:flex;
+flex-direction:column;
 width:100%;
-border-collapse:collapse;
+background:#ffffff !important;
+color:#1f3347 !important;
+border-radius:12px;
+overflow:hidden;
 }
 
-.tabla th{
-background:#c1121f;
-color:white;
-padding:10px;
+.inf-grid-header,
+.inf-grid-row{
+display:grid;
+grid-template-columns:60px 100px 1.5fr 1.2fr 120px 100px 1fr 100px;
+gap:12px;
+align-items:center;
+padding:12px 14px;
+width:100%;
 }
 
-.tabla td{
-padding:10px;
-border-bottom:1px solid #ddd;
+.inf-grid-header{
+background:#c1121f !important;
+color:#ffffff !important;
+font-weight:700;
+font-size:0.8rem;
+text-transform:uppercase;
 }
 
-.tabla tr:hover{
-background:#f5f5f5;
+.inf-grid-row{
+border-bottom:1px solid #e5edf3;
+font-size:0.9rem;
+background:#ffffff !important;
+transition:background-color 0.2s ease;
+}
+
+.inf-grid-row:nth-child(even){
+background:#f9fafb !important;
+}
+
+.inf-grid-row:hover{
+background:#f3f4f6 !important;
+}
+
+.inf-empty-state{
+padding:30px;
+text-align:center;
+color:#6b7280;
+font-size:0.95rem;
+}
+
+.inf-actions{
+display:flex;
+gap:8px;
+justify-content:center;
+}
+
+.inf-actions a{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+width:32px;
+height:32px;
+border-radius:6px;
+background:#ede9fe;
+color:#7c3aed;
+text-decoration:none;
+font-size:1rem;
+transition:all 0.2s ease;
+}
+
+.inf-actions a:hover{
+background:#ddd6fe;
+transform:scale(1.05);
 }
 
 .acciones{

@@ -67,31 +67,33 @@ const ListSolicitudcons = () => {
           <input type="text" className="textbuscar" placeholder="Buscar Contribuyentes"/>  
         </div>
            
-        <table className="my-tablesc">
-          <thead>
-            <tr>
-              <th >Fecha</th>
-              <th >Numero</th>
-              <th >Contribuyente</th>
-              <th >Motivo</th>
-              <th >PDF</th>
-            </tr>
-          </thead>
-        
-          {currentItems.map((registro) => (
-            <tr key={registro.id}>
-              <td >{registro.fecha_solicitud }</td>
-              <td >{registro.id }</td>
-              <td >{registro.contribuyente.ruc_cont} {registro.contribuyente.nombre_cont}</td>
-              <td >{registro.motivo}</td>
-              <td ><Link to={`/solicitudConpdf/${registro.contribuyente.ruc_cont}/${registro.id}`}>
-                               <button > 
-                                 <GrDocumentPdf style={{ marginRight: '8px' }} />
-                                 </button></Link>
-                                </td>
-            </tr>    
-          ))}
-      </table> 
+        <div className="solcon-grid-list" role="table">
+          <div className="solcon-grid-header" role="row">
+            <span>Fecha</span>
+            <span>Numero</span>
+            <span>Contribuyente</span>
+            <span>Motivo</span>
+            <span>PDF</span>
+          </div>
+          
+          {currentItems.length === 0 ? (
+            <p className="solcon-empty-state">No hay solicitudes de construcción.</p>
+          ) : (
+            currentItems.map((registro) => (
+              <div className="solcon-grid-row" role="row" key={registro.id}>
+                <span>{registro.fecha_solicitud}</span>
+                <span>{registro.id}</span>
+                <span>{registro.contribuyente.ruc_cont} {registro.contribuyente.nombre_cont}</span>
+                <span>{registro.motivo}</span>
+                <span className="solcon-actions">
+                  <Link to={`/solicitudConpdf/${registro.contribuyente.ruc_cont}/${registro.id}`} title="Ver PDF">
+                    <GrDocumentPdf />
+                  </Link>
+                </span>
+              </div>
+            ))
+          )}
+        </div>
         <div>
           <button onClick={handlePrevious} disabled={currentPage === 1}>Anterior</button>
           <span> Página {currentPage} de {totalPages} </span>

@@ -1,38 +1,149 @@
-.my-tablesc {
-    width: 100%; /* O el ancho que desees */
-    border-collapse: collapse; /* Para que las celdas se vean bien */
-  }
-  
-  .my-tablesc th, .my-tablesc td {
-    border: 1px solid #ddd; /* Borde de las celdas */
-    padding: 8px; /* Espaciado interno */
-    text-align: left; /* Alineación del texto */
-  }
-  
-  .my-tablesc th {
-    background-color: #f70c0c; /* Color de fondo para el encabezado */
-  }
-  
-  .my-tablesc th:nth-child(1), .my-tablesc td:nth-child(1) {
-    width:150px; /* Ancho de la primera columna */
-  }
-  
-  .my-tablesc th:nth-child(2), .my-tablesc td:nth-child(2) {
-    width: 120px; /* Ancho de la segunda columna */
-  }
-  
-  .my-tablesc th:nth-child(3), .my-tablesc td:nth-child(3) {
-    width: 380px; /* Ancho de la tercera columna */
-  }
-  
-  .my-tablesc th:nth-child(4), .my-tablesc td:nth-child(4) {
-    width: 250px; /* Ancho de la tercera columna */
-  }
-  .my-tablesc th:nth-child(5), .my-tablesc td:nth-child(5) {
-    width: 100px; /* Ancho de la tercera columna */
-  }
-  
-  
-  .centered-cell {
-    text-align: center; /* Centrar el contenido de la celda */
-  }
+
+.solcon-grid-list{
+display:flex;
+flex-direction:column;
+width:100%;
+background:#ffffff !important;
+color:#1f3347 !important;
+border-radius:12px;
+overflow:hidden;
+margin:20px 0;
+border:1px solid #e5edf3;
+}
+
+.solcon-grid-header,
+.solcon-grid-row{
+display:grid;
+grid-template-columns:120px 100px 1.5fr 1.2fr 80px;
+gap:12px;
+align-items:center;
+padding:12px 14px;
+width:100%;
+}
+
+.solcon-grid-header{
+background:#c1121f !important;
+color:#ffffff !important;
+font-weight:700;
+font-size:0.8rem;
+text-transform:uppercase;
+}
+
+.solcon-grid-row{
+border-bottom:1px solid #e5edf3;
+font-size:0.9rem;
+background:#ffffff !important;
+transition:background-color 0.2s ease;
+}
+
+.solcon-grid-row:nth-child(even){
+background:#f9fafb !important;
+}
+
+.solcon-grid-row:hover{
+background:#f3f4f6 !important;
+}
+
+.solcon-empty-state{
+padding:30px;
+text-align:center;
+color:#6b7280;
+font-size:0.95rem;
+}
+
+.solcon-actions{
+display:flex;
+justify-content:center;
+}
+
+.solcon-actions a{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+width:32px;
+height:32px;
+border-radius:6px;
+background:#fee2e2;
+color:#c1121f;
+text-decoration:none;
+font-size:1rem;
+}
+
+.solcon-actions a:hover{
+background:#fca5a5;
+transform:scale(1.05);
+}
+.sol-grid-list{
+display:flex;
+flex-direction:column;
+width:100%;
+background:#ffffff !important;
+color:#1f3347 !important;
+border-radius:12px;
+overflow:hidden;
+margin:20px 0;
+border:1px solid #e5edf3;
+}
+
+.sol-grid-header,
+.sol-grid-row{
+display:grid;
+grid-template-columns:120px 100px 1.5fr 150px 80px;
+gap:12px;
+align-items:center;
+padding:12px 14px;
+width:100%;
+}
+
+.sol-grid-header{
+background:#c1121f !important;
+color:#ffffff !important;
+font-weight:700;
+font-size:0.8rem;
+text-transform:uppercase;
+}
+
+.sol-grid-row{
+border-bottom:1px solid #e5edf3;
+font-size:0.9rem;
+background:#ffffff !important;
+transition:background-color 0.2s ease;
+}
+
+.sol-grid-row:nth-child(even){
+background:#f9fafb !important;
+}
+
+.sol-grid-row:hover{
+background:#f3f4f6 !important;
+}
+
+.sol-empty-state{
+padding:30px;
+text-align:center;
+color:#6b7280;
+font-size:0.95rem;
+}
+
+.sol-actions{
+display:flex;
+justify-content:center;
+}
+
+.sol-actions a{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+width:32px;
+height:32px;
+border-radius:6px;
+background:#fee2e2;
+color:#c1121f;
+text-decoration:none;
+font-size:1rem;
+}
+
+.sol-actions a:hover{
+background:#fca5a5;
+transform:scale(1.05);
+}

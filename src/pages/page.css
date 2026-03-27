@@ -8,21 +8,15 @@
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    
-    width: 100%; /* O el ancho que desees */
-    overflow-x: auto; /* Para permitir el desplazamien
-
-    align-items: center; /* Centra horizontalmente */
-    width: 100vw; /* Ocupa todo el ancho de la ventana */
-    height: 100vh; 
-    background-color: white;
-    width: 100%;
-    flex: 1; /* Esto permite que el contenido principal ocupe el espacio restante */
-    padding: 0px; /* Espaciado interno */
-    top: 0;
-    overflow-y: auto; /* Permite el desplazamiento si el contenido es demasiado largo */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1;
+  align-items: stretch;
+  background-color: white;
+  padding: 0;
+  overflow-x: auto;
+  overflow-y: auto;
 }
 
 .formcontainer {

@@ -9,7 +9,11 @@ GrDocumentPdf
 
 import {
 FaSearch,
-FaEye
+FaEye,
+FaChartBar,
+FaUsers,
+FaFire,
+FaHardHat
 } from "react-icons/fa";
 
 import "./page.css";
@@ -26,10 +30,12 @@ const [page,setPage] = useState(1);
 
 const opcionesmenu = [
 
-{ id:1,path:'/contribuyentesadd',name:'Agregar Contribuyente'},
-{ id:2,path:'/ListInformes',name:'Informes Inspección'},
-{ id:3,path:'/ListSolicitud',name:'Solicitudes Permisos'},
-{ id:4,path:'/listinspectores',name:'Inspectores'}
+{ id:1,path:'/dashboard',name:'Dashboard', icono: FaChartBar},
+{ id:2,path:'/contribuyentes',name:'Contribuyentes', icono: FaUsers},
+{ id:3,path:'/ListInformes',name:'Informes', icono: FaEye},
+{ id:4,path:'/ListSolicitud',name:'Solicitudes', icono: FaFire},
+{ id:5,path:'/ListSolicitudCon',name:'Construccion', icono: FaHardHat},
+{ id:6,path:'/listinspectores',name:'Inspectores', icono: FaUsers}
 
 ];
 
@@ -108,73 +114,46 @@ onChange={(e)=>setResultadoFilter(e.target.value)}
 </div>
 
 
-<table className="tabla">
+<div className="inf-grid-list" role="table" aria-label="Listado de informes">
+  <div className="inf-grid-header" role="row">
+    <span>#</span>
+    <span>Fecha</span>
+    <span>Establecimiento</span>
+    <span>Inspector</span>
+    <span>Resultado</span>
+    <span>Solicitud</span>
+    <span>Observación</span>
+    <span>Acciones</span>
+  </div>
 
-<thead>
-
-<tr>
-
-<th>#</th>
-<th>Fecha</th>
-<th>Establecimiento</th>
-<th>Inspector</th>
-<th>Resultado</th>
-<th>Solicitud</th>
-<th>Observación</th>
-<th>Acciones</th>
-
-</tr>
-
-</thead>
-
-
-<tbody>
-
-{current.map(inf => (
-
-<tr key={inf.id}>
-
-<td>{inf.id}</td>
-
-<td>{inf.fecha_informe}</td>
-
-<td>{inf.establecimiento_nombre}</td>
-
-<td>{inf.inspector_nombre}</td>
-
-<td>
-
-<span className={`estado ${inf.resultado_informe?.toLowerCase()}`}>
-{inf.resultado_informe}
-</span>
-
-</td>
-
-<td>{inf.nrosolicitud}</td>
-
-<td>{inf.observacion}</td>
-
-
-<td className="acciones">
-  {/* `/informes/listadoinfo/${establecimiento_id}/establecimiento/` */}
-
-<Link to={`/informespdf/${inf.establecimiento}/${inf.id}`}>
-<GrDocumentPdf title="Generar PDF"/>
-</Link>
-
-<Link to={`/verinforme/${inf.id}`}>
-<FaEye title="Ver Informe"/>
-</Link>
-
-</td>
-
-</tr>
-
-))}
-
-</tbody>
-
-</table>
+  {current.length === 0 ? (
+    <p className="inf-empty-state">No hay informes que mostrar.</p>
+  ) : (
+    current.map(inf => (
+      <div className="inf-grid-row" role="row" key={inf.id}>
+        <span>{inf.id}</span>
+        <span>{inf.fecha_informe}</span>
+        <span>{inf.establecimiento_nombre}</span>
+        <span>{inf.inspector_nombre}</span>
+        <span>
+          <span className={`estado ${inf.resultado_informe?.toLowerCase()}`}>
+            {inf.resultado_informe}
+          </span>
+        </span>
+        <span>{inf.nrosolicitud}</span>
+        <span>{inf.observacion}</span>
+        <span className="inf-actions">
+          <Link to={`/informespdf/${inf.establecimiento}/${inf.id}`} title="Generar PDF">
+            <GrDocumentPdf />
+          </Link>
+          <Link to={`/verinforme/${inf.id}`} title="Ver Informe">
+            <FaEye />
+          </Link>
+        </span>
+      </div>
+    ))
+  )}
+</div>
 
 
 <div className="paginacion">

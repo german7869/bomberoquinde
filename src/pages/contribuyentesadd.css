@@ -1,0 +1,175 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap");
+
+.contadd-page{
+padding:24px;
+background:linear-gradient(180deg,#f5f8fb 0%,#ffffff 45%);
+font-family:"Manrope","Segoe UI","Helvetica Neue",sans-serif;
+}
+
+.contadd-hero{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+gap:20px;
+padding:22px;
+border-radius:20px;
+background:linear-gradient(135deg,#0f2740 0%,#1f4e79 100%);
+color:#ffffff;
+box-shadow:0 22px 44px rgba(15,39,64,0.22);
+margin-bottom:16px;
+}
+
+.contadd-kicker{
+margin:0;
+font-size:0.8rem;
+letter-spacing:0.14em;
+text-transform:uppercase;
+opacity:0.8;
+}
+
+.contadd-hero h2{
+margin:6px 0 8px;
+font-size:1.9rem;
+line-height:1.1;
+}
+
+.contadd-subtitle{
+margin:0;
+max-width:660px;
+font-size:0.95rem;
+line-height:1.45;
+color:rgba(255,255,255,0.84);
+}
+
+.contadd-meta-grid{
+display:grid;
+grid-template-columns:repeat(3,minmax(150px,1fr));
+gap:10px;
+margin-top:14px;
+}
+
+.contadd-meta-grid strong{
+font-size:0.68rem;
+text-transform:uppercase;
+letter-spacing:0.05em;
+color:rgba(255,255,255,0.82);
+}
+
+.contadd-meta-grid p{
+margin:4px 0 0;
+font-size:0.9rem;
+color:#ffffff;
+}
+
+.contadd-hero-actions{
+display:grid;
+gap:8px;
+width:min(100%,220px);
+}
+
+.contadd-primary-button,
+.contadd-secondary-button{
+height:42px;
+padding:0 14px;
+border:none;
+border-radius:11px;
+font-weight:700;
+cursor:pointer;
+}
+
+.contadd-primary-button{
+background:#c1121f;
+color:#ffffff;
+}
+
+.contadd-secondary-button{
+background:#ffffff;
+color:#0f2740;
+}
+
+.contadd-form-shell{
+padding:18px;
+background:#ffffff;
+border:1px solid #dce6ee;
+border-radius:18px;
+box-shadow:0 14px 34px rgba(15,23,42,0.05);
+}
+
+.contadd-form-grid{
+display:grid;
+grid-template-columns:repeat(2,minmax(220px,1fr));
+gap:14px;
+}
+
+.contadd-field{
+display:flex;
+flex-direction:column;
+gap:8px;
+font-size:0.9rem;
+color:#29445b;
+}
+
+.contadd-field span{
+font-weight:700;
+}
+
+.contadd-field input,
+.contadd-field select{
+height:42px;
+border:1px solid #c7d5e2;
+border-radius:12px;
+padding:0 12px;
+background:#fbfdff;
+}
+
+.contadd-field input:disabled{
+background:#eef2f7;
+color:#4b5f75;
+cursor:not-allowed;
+}
+
+.contadd-field-full{
+grid-column:span 2;
+}
+
+.contadd-info-banner{
+margin:14px 0 0;
+padding:12px 14px;
+border-radius:12px;
+background:#edf5fb;
+border:1px solid #cfe0ef;
+color:#29445b;
+font-weight:600;
+}
+
+.contadd-info-error{
+background:#fee2e2;
+border-color:#f5b8b8;
+color:#991b1b;
+}
+
+@media (max-width: 900px){
+.contadd-page{
+padding:16px;
+}
+
+.contadd-hero{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.contadd-meta-grid,
+.contadd-form-grid{
+grid-template-columns:1fr;
+}
+
+.contadd-field-full{
+grid-column:span 1;
+}
+
+.contadd-hero-actions,
+.contadd-primary-button,
+.contadd-secondary-button{
+width:100%;
+}
+}

@@ -1,11 +1,11 @@
 // src/InspectionForm.jsx
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import './form.css'
+import './informeadd.css'
 import { jsPDF } from 'jspdf';
 import { useParams } from 'react-router-dom';
 import axiosInstance from '../utils/api';
-import { Navigate } from 'react-router-dom';
 import React from 'react';
 import { LuFireExtinguisher } from "react-icons/lu";
 import { FaFireExtinguisher } from "react-icons/fa6";
@@ -437,52 +437,88 @@ if (redirect) {
   return (
     <div className="app"  >
       <Header opcionesmenu={opcionesmenu} />
-    
-    <body className='container' >
-    
-    <div style={{ padding: '12px',width: '750px', backgroundColor: 'red', color: 'white', borderRadius: '8px', marginBottom: '2px' }}>
-     {EstaCont ? (
-      <>
-       <label>id: {EstaCont.id}</label>
-       {EstaCont.contribuyente ? (
-        <>
-          <label>CI: {EstaCont.contribuyente.ruc_cont}  Razon social: {EstaCont.contribuyente.nombre_cont} </label>
-          
-        </>
-      ) : (
-        <label>Contribuyente no disponible</label>
-      )}
-      <label>Nombre Comercial: {EstaCont.nombre_est}</label>
-      <label>Actividad: {EstaCont.actividad}</label>
-    </>
-  ) : (
-    <label>Cargando datos...</label>
-  )}
-</div>
+      
+    <div className='container informeadd-page' >
 
+    <section className="infa-hero">
+      <div>
+        <p className="infa-kicker">Panel de creacion de informe</p>
+        <p className="infa-subtitle">Complete las pestañas del formulario para registrar la inspeccion.</p>
 
+        <div className="infa-est-grid">
+          <div>
+            <strong>ID Establecimiento</strong>
+            <p>{EstaCont?.id || 'Sin dato'}</p>
+          </div>
 
-<div style={{ width: '65%', borderRadius: '8px', overflow: 'hidden' }}>
-  <div className="tabs" style={{ display: 'flex', justifyContent: 'space-around', backgroundColor: 'black', borderRadius: '8px' }}>
-    <button onClick={() => setActiveTab(0)} style={{ flex: 1, border: 'none', padding: '10px', borderRadius: '8px', backgroundColor: 'transparent', cursor: 'pointer' }}>
-      <RiPlayListAddLine style={{ marginRight: '10px' }} /> Datos Informe
+          <div>
+            <strong>RUC / CI</strong>
+            <p>{EstaCont?.contribuyente?.ruc_cont || 'Sin dato'}</p>
+          </div>
+
+          <div>
+            <strong>Razon social</strong>
+            <p>{EstaCont?.contribuyente?.nombre_cont || 'Contribuyente no disponible'}</p>
+          </div>
+
+          <div>
+            <strong>Nombre comercial</strong>
+            <p>{EstaCont?.nombre_est || 'Sin dato'}</p>
+          </div>
+
+          <div>
+            <strong>Actividad</strong>
+            <p>{EstaCont?.actividad || 'Sin dato'}</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="infa-hero-actions">
+        <button type="button" className="infa-action-secondary" onClick={() => navigate(`/informes/${establecimiento_id}`)}>
+          Volver a informes
+        </button>
+
+        <button type="button" className="infa-action-primary" onClick={() => setActiveTab(0)}>
+          Nuevo informe
+        </button>
+      </div>
+    </section>
+
+<div className="infa-tabs-shell">
+  <div className="tabs infa-tabs" role="tablist" aria-label="Secciones del informe">
+    <button type="button" role="tab" aria-selected={activeTab === 0} className={`infa-tab-button ${activeTab === 0 ? 'active' : ''}`} onClick={() => setActiveTab(0)}>
+      <RiPlayListAddLine className="infa-tab-icon" /> Datos informe
     </button>
-    <button onClick={() => setActiveTab(1)} style={{ flex: 1, border: 'none', padding: '10px', borderRadius: '8px', backgroundColor: 'transparent', cursor: 'pointer' }}>
-      <FaFireExtinguisher style={{ marginRight: '10px' }} /> Extintores
+    <button type="button" role="tab" aria-selected={activeTab === 1} className={`infa-tab-button ${activeTab === 1 ? 'active' : ''}`} onClick={() => setActiveTab(1)}>
+      <FaFireExtinguisher className="infa-tab-icon" /> Extintores
     </button>
-    <button onClick={() => setActiveTab(2)} style={{ flex: 1, border: 'none', padding: '10px', borderRadius: '8px', backgroundColor: 'transparent', cursor: 'pointer' }}>
-      <FaListCheck style={{ marginRight: '10px' }} /> Opciones seleccionar si/no
+    <button type="button" role="tab" aria-selected={activeTab === 2} className={`infa-tab-button ${activeTab === 2 ? 'active' : ''}`} onClick={() => setActiveTab(2)}>
+      <FaListCheck className="infa-tab-icon" /> Check list cumple
     </button>
     
   </div>
+
+  <div className="infa-tab-tools">
+    <select
+      className="infa-tab-select"
+      value={activeTab}
+      onChange={(event) => setActiveTab(Number(event.target.value))}
+      aria-label="Cambiar seccion del informe"
+    >
+      <option value={0}>Datos informe</option>
+      <option value={1}>Extintores</option>
+      <option value={2}>Check list cumple</option>
+    </select>
+  </div>
 </div>
 
-    <form onSubmit={handleSubmit}>   
+    <form onSubmit={handleSubmit} className="infa-form">   
       
     {activeTab === 0 && (
-     <div> 
-      <div className="form-group" style={{ display: 'flex', alignItems: 'center' }}>
-      <div style={{ marginRight: '10px' }}>
+     <section className="infa-tab-panel"> 
+      <h4 className="infa-panel-title">Datos informe</h4>
+      <div className="infa-two-cols">
+      <label className="infa-field infa-row-gap">
           <label>Numero del informe:</label>
           <input
             type="text"
@@ -491,8 +527,8 @@ if (redirect) {
             onChange={(e) => setNumeroInforme(e.target.value)}
           required
           />
-     </div>
-     <div>
+     </label>
+     <label className="infa-field">
         <label>Nro solicitud solicitado para inspeccion:</label>
         <input
           type="text"
@@ -501,9 +537,9 @@ if (redirect) {
           onChange={(e) => setNroSolicitud(e.target.value)}
           required
         />
-     </div>
+     </label>
     </div>
-    <div className="form-group">
+    <label className="infa-field">
       <label>Fecha:</label>
       <input
         type="date"
@@ -512,9 +548,9 @@ if (redirect) {
         onChange={(e) => setFecha(e.target.value)}
         required
       />
-      </div> 
-    <div className="form-group" style={{ display: 'flex', alignItems: 'center',height:'50px' }}>
-      <div>
+      </label> 
+    <div className="infa-two-cols infa-row-compact">
+      <label className="infa-field">
         <label>Tamaño:</label>
         <select
          value={JSON.stringify(tamano)}
@@ -533,8 +569,8 @@ if (redirect) {
         ))}
           
         </select>
-      </div>
-      <div>
+      </label>
+      <label className="infa-field">
       <label>Inspector:</label>
       <select
         value={JSON.stringify(inspector)}
@@ -551,8 +587,9 @@ if (redirect) {
           </option>
         ))}
       </select>
+      </label>
       </div>
-      </div>
+      <label className="infa-field">
       <label>Resultado (aprobado,negado,condicionado...etc):</label>   
       <input className="text-amplio"  
         type="text"
@@ -561,7 +598,9 @@ if (redirect) {
         onChange={(e) => setResultadoInforme(e.target.value)}
         required
       />
+      </label>
      
+      <label className="infa-field">
       <label>Observaciones (explique si es necesario el resultado):</label>
       <input
         className="text-amplio" 
@@ -571,22 +610,34 @@ if (redirect) {
         onChange={(e) => setObservacion(e.target.value)}
         required
       />
+      </label>
       
+      <label className="infa-field">
       <label>Recomendaciones</label>
-      <input
+      <textarea
         className="text-amplio" 
-        type="textarea"
         placeholder="Recomendaciones"
         value={recomendaciones}
         onChange={(e) => setRecomendaciones(e.target.value)}
         required
       />
+      </label>
+
+      <div className="infa-step-actions">
+        <button type="button" className="infa-prev-button" onClick={() => setActiveTab(2)}>
+          Ir a Check list
+        </button>
+        <button type="button" className="infa-next-button" onClick={() => setActiveTab(1)}>
+          Continuar a Extintores
+        </button>
       </div>
+      </section>
     )}
      {activeTab === 1 && (
-      <div>
+      <section className="infa-tab-panel">
+       <h4 className="infa-panel-title">Extintores</h4>
        
-        <table >
+        <table className="infa-ext-table">
           <thead>
             <tr>
               <th >Tipo</th>
@@ -639,27 +690,38 @@ if (redirect) {
           ))}
         </tbody> 
           </table>
-          <button type="button" onClick={addRow}>
+          <button type="button" className="infa-add-row-button" onClick={addRow}>
              Agregar Datos otro Extintor
          </button>
+
+         <div className="infa-step-actions">
+           <button type="button" className="infa-prev-button" onClick={() => setActiveTab(0)}>
+             Volver a Datos informe
+           </button>
+           <button type="button" className="infa-next-button" onClick={() => setActiveTab(2)}>
+             Continuar a Check list
+           </button>
+         </div>
             
        
-      </div>
+      </section>
      )}
    {activeTab === 2 && (
-  <div style={{ overflowX: 'auto', maxWidth: '100%', maxHeight: '300px' }}>
-    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <section className="infa-tab-panel">
+  <h4 className="infa-panel-title">Check list cumple</h4>
+  <div className="infa-table-scroll">
+    <table className="infa-check-table">
       <thead>
         <tr>
-          <th style={{ border: '1px solid #ddd', padding: '8px' }}>Descripción</th>
-          <th style={{ border: '1px solid #ddd', padding: '8px' }}>Visto bueno</th>
+          <th>Descripción</th>
+          <th>Visto bueno</th>
         </tr>
       </thead>
       <tbody>
         {detalleinforme.map((opcion) => (
           <tr key={opcion.id}>
-            <td style={{ border: '1px solid #ddd', padding: '10px' }}>{opcion.descripcion}</td>
-            <td style={{ border: '1px solid #ddd', padding: '10px' }}>
+            <td>{opcion.descripcion}</td>
+            <td>
               <input
                 type="checkbox"
                 checked={opcion.valor}
@@ -671,20 +733,30 @@ if (redirect) {
       </tbody>
     </table>
   </div>
+
+  <div className="infa-step-actions">
+    <button type="button" className="infa-prev-button" onClick={() => setActiveTab(0)}>
+      Volver a Datos informe
+    </button>
+    <button type="button" className="infa-next-button" onClick={() => setActiveTab(1)}>
+      Ir a Extintores
+    </button>
+  </div>
+  </section>
 )}
 
-    
-    <button type="submit">Guardar</button>  
-    {responseMessage && (
-            <div>
-                <button onClick={generatePDF}>Generar PDF</button>
-                
-            </div>
-          )}
+    <div className="infa-form-actions">
+      <button className="infa-save-button" type="submit">Guardar</button>
+      {responseMessage && (
+        <button className="infa-pdf-button" type="button" onClick={generatePDF}>
+          Generar PDF
+        </button>
+      )}
+    </div>
     
     {error && <div className="error">{error}</div>} {/* Display error if exists */}
     </form>
-    </body> 
+    </div> 
       
     </div> 
   );

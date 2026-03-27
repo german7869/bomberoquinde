@@ -10,6 +10,7 @@ import './listadosolicitud.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Header from '../components/Header';
 import { GrDocumentPdf } from "react-icons/gr";
+import { FaChartBar, FaClipboardList, FaFire, FaHardHat, FaUsers } from "react-icons/fa";
 
 const ListSolicitudcons = () => {
   const navigate = useNavigate();  
@@ -20,8 +21,12 @@ const ListSolicitudcons = () => {
   const [currentPage, setCurrentPage] = useState(1);
   
   const  opcionesmenu = [
-    
-    
+    { id: 1, path: '/dashboard', name: 'Dashboard', icono: FaChartBar },
+    { id: 2, path: '/contribuyentes', name: 'Contribuyentes', icono: FaUsers },
+    { id: 3, path: '/ListInformes', name: 'Informes', icono: FaClipboardList },
+    { id: 4, path: '/ListSolicitud', name: 'Solicitudes', icono: FaFire },
+    { id: 5, path: '/ListSolicitudCon', name: 'Construccion', icono: FaHardHat },
+    { id: 6, path: '/listinspectores', name: 'Inspectores', icono: FaUsers },
   ];     
   /* home user-o plus-square list-ul  search-plus */
   React.useEffect(() => {
@@ -67,32 +72,33 @@ const ListSolicitudcons = () => {
           <input type="text" className="textbuscar" placeholder="Buscar Contribuyentes"/>  
         </div>
            
-        <table >
-          <thead>
-            <tr>
-              <th >Fecha</th>
-              <th >Numero</th>
-              <th >Establecimiento</th>
-              <th >ruc</th>
-              <th >PDF</th>
-            </tr>
-          </thead>
-        
-          {currentItems.map((registro) => (
-            <tr key={registro.id}>
-              <td >{registro.fecha_solicitud }</td>
-              <td >{registro.id  }</td>
-               <td >{registro.establecimiento.nombre_est}</td>
-               <td >{registro.establecimiento.contribuyente}</td>
-              <td ><Link to={`/Solicitudpdf/${registro.establecimiento.id}/${registro.id}`}>
-                 <button > 
-                   <GrDocumentPdf style={{ marginRight: '8px' }} />
-                   </button></Link>
-                  </td>
-                
-            </tr>    
-          ))}
-      </table> 
+        <div className="sol-grid-list" role="table">
+          <div className="sol-grid-header" role="row">
+            <span>Fecha</span>
+            <span>Numero</span>
+            <span>Establecimiento</span>
+            <span>RUC</span>
+            <span>PDF</span>
+          </div>
+          
+          {currentItems.length === 0 ? (
+            <p className="sol-empty-state">No hay solicitudes registradas.</p>
+          ) : (
+            currentItems.map((registro) => (
+              <div className="sol-grid-row" role="row" key={registro.id}>
+                <span>{registro.fecha_solicitud}</span>
+                <span>{registro.id}</span>
+                <span>{registro.establecimiento.nombre_est}</span>
+                <span>{registro.establecimiento.contribuyente}</span>
+                <span className="sol-actions">
+                  <Link to={`/Solicitudpdf/${registro.establecimiento.id}/${registro.id}`} title="Ver PDF">
+                    <GrDocumentPdf />
+                  </Link>
+                </span>
+              </div>
+            ))
+          )}
+        </div>
         <div>
           <button onClick={handlePrevious} disabled={currentPage === 1}>Anterior</button>
           <span> Página {currentPage} de {totalPages} </span>

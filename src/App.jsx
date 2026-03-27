@@ -26,6 +26,8 @@ import Solicitudadd from "./pages/Solicitudadd";
 
 import ListInforme from "./pages/ListInforme";
 import ListSolicitud from "./pages/ListSolicitud";
+import ListSolicitudCon from "./pages/ListSolicitudCons";
+import InspectorAdd from "./pages/InspectorAdd";
 import ListInspector from "./pages/ListInspector";
 import Dashboard from "./pages/Dashboard";
 import User from "./pages/User";
@@ -99,8 +101,10 @@ element={<Solicitudadd />}
 <Route path="/Listinformes" element={<ListInforme />} />
 
 <Route path="/ListSolicitud" element={<ListSolicitud />} />
+<Route path="/ListSolicitudCon" element={<ListSolicitudCon />} />
 
 <Route path="/Listinspectores" element={<ListInspector />} />
+<Route path="/inspectorAdd" element={<InspectorAdd />} />
 
 <Route path="/Permisos" element={<Permisos />} />
 
